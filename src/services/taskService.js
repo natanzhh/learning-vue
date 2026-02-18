@@ -7,7 +7,7 @@ export default {
   },
 
   async createTask(task) {
-    const response = await api.post("/tasks", task);
+    const response = await api.post("/tasks", { title: task });
     return response.data;
   },
 
@@ -19,5 +19,5 @@ export default {
   async deleteTask(id) {
     const response = await api.delete(`/tasks/${id}`);
     return response.data;
-  }
+  },
 };
