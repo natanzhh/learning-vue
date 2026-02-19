@@ -12,8 +12,16 @@ const mutations = {
     state.tasks.push(task);
   },
   UPDATE_TASK(state, task) {
-    // TODO => Colocar um códgo para mudar a task que tiver o id especificado. Depois disso, eu ja posso fazer os primeiros testes da funcionalidade de UPDATE
-    state.tasks[id]=push(task);
+    const index = state.tasks.findIndex((t) => t.id === task.id);
+    if (index !== -1) {
+      state.tasks[index].title = task.title;
+    }
+  },
+  DELETE_TASK(state, id) {
+    const index = state.tasks.findIndex((t) => t.id === id);
+    if (index !== -1) {
+      state.tasks.splice(id,1);
+    }
   },
 };
 
@@ -26,9 +34,14 @@ const actions = {
     const task = await taskService.createTask(title);
     commit("ADD_TASK", task);
   },
-  async updateTask({ commit }, id, newTitle) {
-    const task = await taskService.updateTask(id, { title: newTitle });
+  async updateTask({ commit }, {taskId,newTitle}) {
+    console.log("O valor de newTitle no arquivo store é", newTitle);
+    const task = await taskService.updateTask(taskId, newTitle);
     commit("UPDATE_TASK", task);
+  },
+  async deleteTask({ commit }, id) {
+    const task = await taskService.deleteTask(id);
+    commit("DELETE_TASK", task);
   },
 };
 

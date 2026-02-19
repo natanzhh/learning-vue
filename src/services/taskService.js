@@ -11,8 +11,9 @@ export default {
     return response.data;
   },
 
-  async updateTask(id, task) {
-    const response = await api.put(`/tasks/${id}`, task);
+  async updateTask(id,newTitle) {
+    console.log("O valor de newTitle no arquivo services é",newTitle)
+    const response = await api.put(`/tasks/${id}`, { title: newTitle });
     return response.data;
   },
 

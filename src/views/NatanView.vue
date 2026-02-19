@@ -1,5 +1,6 @@
 <template>
   <div class="natan">
+    <NavBar/>
     <img alt="Vue logo" src="https://picsum.photos/200/300" />
     <ComponentePai />
     <h1>Página que Natan criou</h1>
@@ -32,6 +33,7 @@
 // @ is an alias to /src
 import MeuBotao from "@/components/MeuBotao.vue";
 import ComponentePai from "../components/ComponentePai.vue";
+import NavBar from "@/components/NavBar.vue";
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
@@ -40,6 +42,7 @@ export default {
   components: {
     MeuBotao,
     ComponentePai,
+    NavBar
   },
   methods: {
     botaoClicado() {
